@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('owmClient', []);
+var app = angular.module('owmClient', ['ui.bootstrap']);
 
 app.controller('owmClient.controller', function($scope, config) {
   $scope.config = config;
