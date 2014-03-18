@@ -1,3 +1,7 @@
 /* bootstap.css fix for ui-bootstrap */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 /* // bootstap.css fix for ui-bootstrap */
+
+.city-selector {
+  margin-bottom: 20px;
+}

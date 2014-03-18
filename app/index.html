@@ -29,11 +29,33 @@
 
         <h4>{{config.title}}</h4>
         <p>Select a city below to see its current weather conditions</p>
-        <div class="btn-group">
-            <button ng-repeat="city in config.cities" type="button" class="btn btn-primary" ng-model="config.selectedCity" btn-radio="'{{city}}'" ng-click="updateWeatherOf(city)">{{city}}</button>
+        <div class="btn-group city-selector">
+            <button ng-repeat="city in config.cities" type="button" class="btn btn-primary" ng-model="config.selectedCity" btn-radio="'{{city}}'" ng-click="updateWeatherOf(city)" ng-click="hideWeatherData()">{{city}}</button>
         </div>
 
-        <p>city selected: {{config.selectedCity}}</p>
+        <div class="alert alert-success" ng-if="weather.isRetrieved">Successfully retrieved weather data of {{weather.data.name}}</div>
+        <div class="alert alert-warning" ng-if="weather.hasError">Something went wrong, cannot retrieve weather data of {{weather.data.name}}</div>
+
+        <div class="panel panel-default" ng-if="weather.isRetrieved">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{weather.data.name}} <img ng-src="http://openweathermap.org/img/w/{{weather.current.icon}}.png"> {{weather.current.temperature+'\u00B0'}} {{weather.current.description}}</h3>
+          </div>
+          <div class="panel-body">
+
+            <table>
+                <tr><td>Get at:</td><td>{{weather.data.dt*1000 | date:'H:mm'}}</td></tr>
+                <tr><td>Location:</td><td>{{weather.data.coord.lon+'\u00B0'}} (lon) / {{weather.data.coord.lat+'\u00B0'}} (lat)</td></tr>
+                <tr><td>Current temperature:</td><td>{{weather.current.temperature+'\u00B0'}}</td></tr>
+                <tr><td>Temperature range:</td><td>{{weather.current.range.min+'\u00B0'}} ... {{weather.current.range.max+'\u00B0'}}</td></tr>
+                <tr><td>Current atmospheric pressure:</td><td>{{weather.data.main.pressure}} hpa</td></tr>
+                <tr><td>Current humidity:</td><td>{{weather.data.main.humidity}} %</td></tr>
+                <tr><td>Wind:</td><td>{{weather.current.wind.speed}} m/s</td></tr>
+                <tr><td>Sunrise:</td><td>{{weather.data.sys.sunrise*1000 | date:'H:mm'}}</td></tr>
+                <tr><td>Sunset:</td><td>{{weather.data.sys.sunset*1000 | date:'H:mm'}}</td></tr>
+            </table>
+
+          </div>
+        </div>
 
     </div>
 
