@@ -30,7 +30,7 @@
         <h4>{{config.title}}</h4>
         <p>Select a city below to see its current weather conditions</p>
         <div class="btn-group">
-            <button ng-repeat="city in config.cities" type="button" class="btn btn-primary" ng-model="config.selectedCity" btn-radio="'{{city}}'">{{city}}</button>
+            <button ng-repeat="city in config.cities" type="button" class="btn btn-primary" ng-model="config.selectedCity" btn-radio="'{{city}}'" ng-click="updateWeatherOf(city)">{{city}}</button>
         </div>
 
         <p>city selected: {{config.selectedCity}}</p>
