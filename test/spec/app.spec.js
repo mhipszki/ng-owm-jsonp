@@ -28,4 +28,7 @@ describe('owmClient', function () {
     expect(config.cities).toContain('London');
   });
 
+  it('should not have a city selected at first', function() {
+    expect(config.selectedCity).toBe('');
+  });
 });

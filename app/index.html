@@ -26,9 +26,15 @@
 
     <!-- Add your site or application content here -->
     <div class="container" ng-view="">
-        <ul>
-            <li ng-repeat="city in config.cities">{{city}}</li>
-        </ul>
+
+        <h4>{{config.title}}</h4>
+        <p>Select a city below to see its current weather conditions</p>
+        <div class="btn-group">
+            <button ng-repeat="city in config.cities" type="button" class="btn btn-primary" ng-model="config.selectedCity" btn-radio="'{{city}}'">{{city}}</button>
+        </div>
+
+        <p>city selected: {{config.selectedCity}}</p>
+
     </div>
 
     <!--[if lt IE 9]>

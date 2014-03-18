@@ -13,5 +13,6 @@ app.constant('config', {
     'Luton',
     'Manchester',
     'Birmingham'
-  ]
+  ],
+  selectedCity: ''
 });
