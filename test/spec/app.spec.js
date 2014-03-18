@@ -6,24 +6,26 @@ describe('owmClient', function () {
 
   var scope;
   var controller;
+  var config;
 
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     controller = $controller('owmClient.controller', {
       $scope: scope
     });
+    config = scope.config;
   }));
 
   it('should define the app title', function () {
-    expect(scope.client.title.length).toBeGreaterThan(0);
+    expect(config.title.length).toBeGreaterThan(0);
   });
 
   it('should define four UK city names', function() {
-    expect(scope.client.selectableCities.length).toBe(4);
+    expect(config.cities.length).toBe(4);
   });
 
-  it('should have London in selectable cities', function() {
-    expect(scope.client.selectableCities).toContain('London');
+  it('should have London in cities', function() {
+    expect(config.cities).toContain('London');
   });
 
 });
