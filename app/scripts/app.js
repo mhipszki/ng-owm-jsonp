@@ -32,7 +32,7 @@ app.controller('owmClient.controller', function($scope, config, weatherService) 
     $scope.weather = weatherService.process(data);
   };
 
-  var showError = function(data, status, headers, config) {
+  var showError = function() {
     $scope.weather.hasError = true;
   };
 });
@@ -44,8 +44,6 @@ app.service('weatherService', function($http, config) {
 
   this.process = function(data) {
     var weather = angular.extend({}, data.weather[0]);
-
-    console.log(data);
 
     weather.isRetrieved = parseInt(data.cod)===200;
     weather.hasError = !weather.isRetrieved;
