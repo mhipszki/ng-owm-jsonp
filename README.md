@@ -3,6 +3,8 @@ Open Weather Map client
 
 An example AngularJS project using JSONP to fetch data from Open Weather Map service.
 
+Demo: http://owm.hipzter.co.uk
+
 Using:
 
 - Yeoman Angular generator for basic scaffolding
