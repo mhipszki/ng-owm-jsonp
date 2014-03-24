@@ -2,23 +2,25 @@
 
 describe('owmClient', function () {
 
+  beforeEach(module('owmClient'));
+
+  var scope;
+  var config;
+  var weatherService;
+
+  beforeEach(inject(function ($injector) {
+    var $controller = $injector.get('$controller');
+    var $rootScope = $injector.get('$rootScope');
+
+    scope = $rootScope.$new();
+    $controller('owmClient.controller', {
+      $scope: scope
+    });
+    config = scope.config;
+    weatherService = $injector.get('weatherService');
+  }));
+
   describe('controller', function() {
-
-    beforeEach(module('owmClient'));
-
-    var scope;
-    var controller;
-    var config;
-    var weatherService;
-
-    beforeEach(inject(function ($controller, $rootScope, _weatherService_) {
-      scope = $rootScope.$new();
-      controller = $controller('owmClient.controller', {
-        $scope: scope
-      });
-      config = scope.config;
-      weatherService = _weatherService_;
-    }));
 
     it('should define the app title', function () {
       expect(config.title.length).toBeGreaterThan(0);
@@ -54,5 +56,7 @@ describe('owmClient', function () {
       expect(service).toHaveBeenCalled();
       expect(service.mostRecentCall.args[0]).toBe(city);
     });
+
   });
+
 });
