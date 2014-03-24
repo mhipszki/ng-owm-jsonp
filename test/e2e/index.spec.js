@@ -1,3 +1,5 @@
+'use strict';
+
 describe("owm client", function() {
 
   function Page() {
