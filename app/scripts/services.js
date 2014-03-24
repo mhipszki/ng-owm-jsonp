@@ -3,8 +3,12 @@
 function WeatherService($http, APIUrl, cityToken) {
 
   this.getCurrentWeatherOf = function(city, onSuccess, onError) {
-    var url = APIUrl.replace(cityToken, city);
+    var url = this.getUrlFor(city);
     $http.jsonp( url ).success( onSuccess ).error( onError );
+  };
+
+  this.getUrlFor = function(city) {
+    return APIUrl.replace(cityToken, city);
   };
 
   this.process = function(data) {
@@ -41,5 +45,5 @@ function WeatherService($http, APIUrl, cityToken) {
 
   function roundToDecimal(value) {
     return Math.round(value*10)/10;
-  }  
-};
+  }
+}
