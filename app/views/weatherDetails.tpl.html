@@ -1,0 +1,20 @@
+ <div class="panel panel-default" ng-if="weather.isRetrieved">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{weather.city}} <img ng-src="http://openweathermap.org/img/w/{{weather.icon}}.png" /> {{weather.temperature.current+'\u00B0'}} {{weather.description}}</h3>
+    </div>
+    <div class="panel-body">
+
+      <table>
+          <tr><td>Get at:</td><td>{{weather.getAt | date:'H:mm'}}</td></tr>
+          <tr><td>Location:</td><td>{{weather.lon+'\u00B0'}} (lon) / {{weather.lat+'\u00B0'}} (lat)</td></tr>
+          <tr><td>Current temperature:</td><td>{{weather.temperature.current+'\u00B0'}}</td></tr>
+          <tr><td>Temperature range:</td><td>{{weather.temperature.range.min+'\u00B0'}} ... {{weather.temperature.range.max+'\u00B0'}}</td></tr>
+          <tr><td>Current atmospheric pressure:</td><td>{{weather.pressure}} hpa</td></tr>
+          <tr><td>Current humidity:</td><td>{{weather.humidity}} %</td></tr>
+          <tr><td>Wind:</td><td>{{weather.wind.speed}} m/s</td></tr>
+          <tr><td>Sunrise:</td><td>{{weather.sunrise | date:'H:mm'}}</td></tr>
+          <tr><td>Sunset:</td><td>{{weather.sunset | date:'H:mm'}}</td></tr>
+      </table>
+
+    </div>
+  </div>

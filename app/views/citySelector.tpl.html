@@ -1,0 +1,3 @@
+<div class="btn-group city-selector">
+    <button ng-repeat="city in config.cities" type="button" class="btn btn-primary" ng-model="config.selectedCity" btn-radio="'{{city}}'" ng-click="updateWeatherOf(city)" ng-click="hideWeatherData()">{{city}}</button>
+</div>

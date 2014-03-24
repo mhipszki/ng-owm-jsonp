@@ -12,10 +12,10 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
@@ -29,33 +29,9 @@
 
         <h4>{{config.title}}</h4>
         <p>Select a city below to see its current weather conditions</p>
-        <div class="btn-group city-selector">
-            <button ng-repeat="city in config.cities" type="button" class="btn btn-primary" ng-model="config.selectedCity" btn-radio="'{{city}}'" ng-click="updateWeatherOf(city)" ng-click="hideWeatherData()">{{city}}</button>
-        </div>
-
-        <div class="alert alert-success" ng-if="weather.isRetrieved">Successfully retrieved weather data of {{weather.city}}</div>
-        <div class="alert alert-warning" ng-if="weather.hasError">Something went wrong, cannot retrieve weather data of {{weather.city}}</div>
-
-        <div class="panel panel-default" ng-if="weather.isRetrieved">
-          <div class="panel-heading">
-            <h3 class="panel-title">{{weather.city}} <img ng-src="http://openweathermap.org/img/w/{{weather.icon}}.png"> {{weather.temperature.current+'\u00B0'}} {{weather.description}}</h3>
-          </div>
-          <div class="panel-body">
-
-            <table>
-                <tr><td>Get at:</td><td>{{weather.getAt | date:'H:mm'}}</td></tr>
-                <tr><td>Location:</td><td>{{weather.lon+'\u00B0'}} (lon) / {{weather.lat+'\u00B0'}} (lat)</td></tr>
-                <tr><td>Current temperature:</td><td>{{weather.temperature.current+'\u00B0'}}</td></tr>
-                <tr><td>Temperature range:</td><td>{{weather.temperature.range.min+'\u00B0'}} ... {{weather.temperature.range.max+'\u00B0'}}</td></tr>
-                <tr><td>Current atmospheric pressure:</td><td>{{weather.pressure}} hpa</td></tr>
-                <tr><td>Current humidity:</td><td>{{weather.humidity}} %</td></tr>
-                <tr><td>Wind:</td><td>{{weather.wind.speed}} m/s</td></tr>
-                <tr><td>Sunrise:</td><td>{{weather.sunrise | date:'H:mm'}}</td></tr>
-                <tr><td>Sunset:</td><td>{{weather.sunset | date:'H:mm'}}</td></tr>
-            </table>
-
-          </div>
-        </div>
+        <div city-selector></div>
+        <div sync-result-message></div>
+        <div weather-details></div>
 
     </div>
 
@@ -66,14 +42,16 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/directives.js"></script>
+    <script src="scripts/services.js"></script>
     <!-- endbuild -->
 </body>
 </html>
