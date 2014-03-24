@@ -1,10 +1,10 @@
 'use strict';
 
-var app = angular.module('owmClient');
+function WeatherService($http, APIUrl, cityToken) {
 
-app.service('weatherService', function($http, config) {
   this.getCurrentWeatherOf = function(city, onSuccess, onError) {
-    $http.jsonp(config.apiUrl.replace(config.cityToken, city)).success( onSuccess ).error( onError );
+    var url = APIUrl.replace(cityToken, city);
+    $http.jsonp( url ).success( onSuccess ).error( onError );
   };
 
   this.process = function(data) {
@@ -35,11 +35,11 @@ app.service('weatherService', function($http, config) {
     return weather;
   };
 
-  var toCelsius = function(kelvin) {
+  function toCelsius(kelvin) {
     return roundToDecimal(kelvin - 273.15);
-  };
+  }
 
-  var roundToDecimal = function(value) {
+  function roundToDecimal(value) {
     return Math.round(value*10)/10;
-  };
-});
+  }  
+};

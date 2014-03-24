@@ -2,6 +2,31 @@
 
 var app = angular.module('owmClient', ['ui.bootstrap']);
 
+app.provider('weatherService', function WeatherServiceProvider() {
+
+  var APIUrl;
+  var cityToken;
+
+  this.setAPIUrl = function(value) {
+    APIUrl = value;
+  };
+
+  this.setCityToken = function(value) {
+    cityToken = value;
+  };
+
+  var weatherServiceFactory = function($http) {
+    return new WeatherService($http, APIUrl, cityToken);
+  };
+
+  this.$get = ['$http', weatherServiceFactory];
+});
+
+app.config(['weatherServiceProvider', 'config', function(weatherService, config) {
+  weatherService.setAPIUrl(config.apiUrl);
+  weatherService.setCityToken(config.cityToken);
+}]);
+
 app.constant('config', {
   title: 'Open Weather Map Client',
   cities: [
