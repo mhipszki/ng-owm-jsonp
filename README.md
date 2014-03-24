@@ -56,3 +56,10 @@ To check the built project in a browser run
 ```
 $ grunt serve:dist
 ```
+
+#### TODO
+
+- add more tests to WeatherService provider
+- add more tests for data processing of the WeatherService
+- add tests for directives
+- decouple directives from main scope
