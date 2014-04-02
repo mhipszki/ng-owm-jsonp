@@ -24,20 +24,24 @@ function WeatherService($http, APIUrl, cityToken) {
       max: toCelsius(data.main.temp_max)
     };
 
-    weather.getAt = data.dt*1000;
+    weather.getAt = toMillisecs( data.dt );
     weather.lon = data.coord.lon;
     weather.lat = data.coord.lat;
     weather.city = data.name;
     weather.pressure = data.main.pressure;
     weather.humidity = data.main.humidity;
     weather.wind = data.wind;
-    weather.sunrise = data.sys.sunrise*1000;
-    weather.sunset = data.sys.sunset*1000;
+    weather.sunrise = toMillisecs( data.sys.sunrise );
+    weather.sunset = toMillisecs( data.sys.sunset );
 
     weather.temperature = temperature;
 
     return weather;
   };
+
+  function toMillisecs(seconds) {
+    return seconds * 1000;
+  }
 
   function toCelsius(kelvin) {
     return roundToDecimal(kelvin - 273.15);
